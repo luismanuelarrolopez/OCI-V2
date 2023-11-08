@@ -1,0 +1,30 @@
+<unicauca-spinner></unicauca-spinner>
+<section class="login-container" fxLayout="row" fxLayoutAlign="center center" fxFill>
+    <mat-card fxLayoutGap="20px" fxLayout="column">
+        <mat-card-content style="text-align: center" fxLayoutGap="20px" fxLayout="column">
+            <h3>Reestablecer contraseña</h3>
+            <p>Digite su correo para la recuperación</p>
+            <form id="login-form" #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
+                <md-input-container style="width: 100%; margin-bottom: 10px" [ngClass]="{ 'mat-input-invalid': submitted && error?.code == 1 }">
+                    <input mdInput type="email" style="width: 300px; text-align: center" formControlName="username" placeholder="ejemplo@ejemplo.com" />
+                    <div>
+                        <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                            <md-hint style="color: red" *ngIf="username.errors.required">*Usuario requerido</md-hint>
+                            <md-hint style="color: red" *ngIf="
+                  (username.dirty || username.touched) &&
+                  username.invalid &&
+                  username.errors.pattern
+                ">Formato de email incorrecto</md-hint>
+                        </div>
+                    </div>
+                </md-input-container>
+            </form>
+        </mat-card-content>
+        <mat-card-actions style="text-align: center">
+            <div class="button">
+                <a href="#"><button mat-raised-button color="warn" type="button">Volver</button></a>
+                <button mat-raised-button color="primary" type="submit" form="login-form">Enviar</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</section>

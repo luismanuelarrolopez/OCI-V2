@@ -1,0 +1,10 @@
+@import 'apps/control-interno/src/assets/theme/_colores.scss';
+footer {
+  background: linear-gradient($unicauca-rojo-top, $unicauca-rojo-bottom);
+  // position: sticky;
+  // z-index: 6;
+}
+
+.footer {
+  color: #fff;
+}

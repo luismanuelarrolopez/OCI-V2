@@ -1,0 +1,49 @@
+<h4 mat-dialog-title>Plan de Mejoramiento</h4>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <h3>Descripción</h3>
+    <p>{{ data.descripcionPlan }}</p>
+  </div>
+  <div class="flex-container">
+    <div>
+      <h3>Fecha de Suscripción</h3>
+      <p>{{ data.fechaSuscripcion | date: 'dd/MM/yyy' }}</p>
+    </div>
+
+    <div>
+      <h3>Fecha de Inicio</h3>
+      <p>{{ data.fechaInicio | date: 'dd/MM/yyy' }}</p>
+    </div>
+
+    <div>
+      <h3>Fecha de Último Seguimiento</h3>
+      <p>{{ data.fechaSeguimiento | date: 'dd/MM/yyy' }}</p>
+    </div>
+
+    <div>
+      <h3>Responsable Seguimiento</h3>
+      <p>{{ data.nombreLiderAuditor }}</p>
+    </div>
+
+    <div>
+      <h3>Estado</h3>
+      <p>{{ data.estado }}</p>
+    </div>
+  </div>
+
+  <div class="observaciones">
+    <h3>Observaciones</h3>
+    <ul>
+      <li *ngFor="let observacion of data.observaciones">
+        {{ observacion }}
+      </li>
+      <li *ngFor="let observacion of data.tipoObservacion">
+        {{ observacion }}f
+      </li>
+    </ul>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close primary>Cerrar</button>
+</mat-dialog-actions>

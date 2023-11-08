@@ -1,0 +1,44 @@
+<div fxLayout="column" fxLayoutGap="30px">
+    <div fxLayoutAlign="center center">
+        <h4>Evaluar evidencia</h4>
+    </div>
+    <!-- Datos de la evidencia -->
+    <div fxLayout="row" fxLayoutGap="30px">
+        <div fxLayout="column">
+            <p>Estado de la evidencia:</p>
+            <div>
+                <mat-error *ngIf="estadoEvidencia=== 'Pendiente'">
+                    Campo <strong>requerido</strong>
+                </mat-error>
+            </div>
+        </div>
+        <div>
+            <mat-radio-group fxLayout="column" fxLayoutGap="15px" [(ngModel)]="estadoEvidencia">
+                <mat-radio-button *ngFor="let evidencia of listadoEvidencia" [value]="evidencia">
+                    {{evidencia}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+    </div>
+    <div fxLayout="column">
+        <p>Observaciones del auditor</p>
+        <textarea matInput [matAutosizeMaxRows]="5" [matAutosizeMinRows]="5" [matTextareaAutosize]="true" [(ngModel)]="observacionAuditor" (keyup)="onKey($event)">
+        </textarea>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+                <mat-error *ngIf="observacionAuditor === null || observacionAuditor === ''">
+                    Campo <strong>requerido</strong>
+                </mat-error>
+            </div>
+            <span><strong>{{contador}}</strong> de 500 caracteres</span>
+        </div>
+    </div>
+
+    <!-- Botones de la evidencia -->
+    <div fxLayoutAlign="end end" fxLayoutGap="40px">
+        <button mat-raised-button color="primary" (click)="onGuardar()">Guardar</button>
+        <button mat-raised-button color="warn" (click)="onCancelar()">Cancelar</button>
+    </div>
+
+</div>

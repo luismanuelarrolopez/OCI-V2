@@ -1,0 +1,16 @@
+<mat-card fxLayout="column" fxLayoutGap="30px">
+    <mat-card-header>
+        <mat-card-title>
+            <h2 class="m-0 p-0 font-weight-normal">{{ inTitulo }}</h2>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <p class="m-0 font-weight-light">{{ inRol }}</p>
+            <p class="m-0">
+                <small>{{ inCorreo }}</small>
+            </p>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="padding" fxFill>
+        <ng-content></ng-content>
+    </mat-card-content>
+</mat-card>

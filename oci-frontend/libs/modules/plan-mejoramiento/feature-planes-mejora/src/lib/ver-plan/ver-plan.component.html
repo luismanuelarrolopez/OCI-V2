@@ -1,0 +1,126 @@
+<main class="row">
+    <section class="col">
+        <div class="row p-3">
+            <section class="padding" fxFill fxLayoutAlign="center center">
+                <mat-card fxLayout="column" fxFlex="1 1 calc(100% - 20px)" fxLayoutAlign="center center" fxLayoutGap="20px">
+                    <mat-card-header fxLayoutAlign="center center">
+                        <mat-card-title>
+                            <h3>{{ titulo }}</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content fxFill fxLayoutAlign="space-around center">
+                        <form [formGroup]="formularioPlan" fxFill>
+                            <div fxLayoutGap="40px" fxLayout="column">
+                                <!-- Datos del plan -->
+                                <div *ngIf="estadoObservacion" class="bordes-curvos padding">
+                                    <h4>Datos básicos</h4>
+                                    <div fxLayout="row" fxLayoutGap="30px">
+                                        <!-- Identificador, nombre, proceso -->
+                                        <div fxLayout="column" fxFlex="1 1 calc(50% - 20px)" fxLayoutGap="15px">
+                                            <mat-form-field>
+                                                <input matInput placeholder="Identificación" type="text" formControlName="idPlanMejoramiento" />
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <input matInput placeholder="Nombres" type="text" formControlName="nombre" />
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <mat-label>Proceso</mat-label>
+                                                <mat-select formControlName="proceso" id="Tipo proceso">
+                                                    <mat-option *ngFor="let proceso of procesos" [value]="proceso">
+                                                        {{ proceso.nombreProceso }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <!-- Fecha inicio y fecha fin -->
+                                        <div fxLayout="column" fxFlex="1 1 calc(50% - 20px)" fxLayoutGap="15px">
+                                            <mat-form-field>
+                                                <mat-label>Fecha inicio</mat-label>
+                                                <input matInput id="fechaInicio" placeholder="Fecha inicio" formControlName="fechaInicio" [matDatepicker]="fechaInicio" readonly />
+                                                <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                                                <mat-datepicker #fechaInicio></mat-datepicker>
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <mat-label>Fecha fin</mat-label>
+                                                <input matInput id="fechaFin" placeholder="Fecha fin" formControlName="fechaFin" [matDatepicker]="fechaFin" [min]="objPlan.fechaInicio" readonly />
+                                                <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                                                <mat-datepicker #fechaFin></mat-datepicker>
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <mat-label>Fecha suscripción</mat-label>
+                                                <input matInput id="fechaSuscripcion" placeholder="Fecha fin" formControlName="fechaSuscripcion" [matDatepicker]="fechaSuscripcion" [min]="objPlan.fechaInicio" readonly />
+                                                <mat-datepicker-toggle matSuffix [for]="fechaSuscripcion"></mat-datepicker-toggle>
+                                                <mat-datepicker #fechaSuscripcion></mat-datepicker>
+                                            </mat-form-field>
+
+                                            <div *ngIf="modoEdicionActivo" fxLayout="row" fxLayoutGap="80px">
+                                                <div fxLayoutGap="20px">
+                                                    <mat-label>Prorrogar</mat-label>
+                                                    <mat-checkbox formControlName="prorrogado">Por un año</mat-checkbox>
+                                                </div>
+                                                <mat-form-field fxFlex="60%">
+                                                    <mat-label>Estado</mat-label>
+                                                    <mat-select formControlName="estado" id="Estado">
+                                                        <mat-option *ngFor="let estado of listadoEstado" [value]="estado.descripcion">
+                                                            {{ estado.descripcion }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <!-- Botón volver -->
+                                            <div fxLayoutAlign="center center" fxLayoutGap="60px">
+                                                <div *ngIf="mostrarBtnVolver" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+                                                    <button mat-raised-button color="primary" type="button" style="float: right" (click)="editarDatos()"> Editar </button>
+                                                    <button mat-raised-button color="warn" type="button" style="float: right" (click)="listar()"> Volver </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Àrbol -->
+                                <!-- <div class="bordes-curvos padding">
+                                    <mat-tree fxLayout="column" [dataSource]="dataSource" [treeControl]="treeControl">
+                                        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+                                            <button mat-icon-button disabled></button> {{node.item}}
+                                        </mat-tree-node>
+
+                                        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.item">
+                                            <mat-icon class="mat-icon-rtl-mirror">
+                                              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                                            </mat-icon>
+                                          </button>
+                                            <p *ngIf="siEsNumericoBoolean(node)">{{escribirNombreNodo(node)}} #{{siEsNumerico(node.item)}}</p>
+                                            <p *ngIf="!siEsNumericoBoolean(node)">{{node.item}} </p>
+                                        </mat-tree-node>
+                                    </mat-tree>
+                                    <h3 *ngIf="noHayDatosParaMostrar" fxLayoutAlign="center center">No hay datos asociados al plan</h3>
+                                </div> -->
+
+                                <!-- Observaciones -->
+                                <div *ngIf="estadoObservacion!==true"  id="obv" class="bordes-curvos padding">
+                                  <div *ngIf="mostrarBtnVolver" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+                                    <button mat-raised-button color="warn" type="button" style="float: right" (click)="listar()"> Volver </button>
+                                  </div>
+                                    <div *ngIf="!this.esLiderProceso" fxLayoutAlign="end center" fxLayoutGap="20px">
+                                        <button mat-raised-button color="primary" (click)="abrir()">
+                                            Agregar observación
+                                        </button>
+                                    </div>
+                                    <unicauca-tabla  [inTituloTabla]="asignarNombreObservacion()" [inColumnas]="columnas" [inStreamDatos$]="streamDatos$" [inActivarFiltroItems]="activarFiltroItems" [inActivarBtns]="estadoButtons" inPlaceholderFiltroItems="Filtrar observaciones" (outEditar$)="editarObservacion($event)"
+                                                    (outEliminar$)="eliminarObservacion($event)">
+                                    </unicauca-tabla>
+                                </div>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </section>
+        </div>
+    </section>
+</main>

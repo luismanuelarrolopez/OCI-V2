@@ -1,0 +1,37 @@
+h3,
+h4 {
+  color: rgb(5, 26, 84);
+  margin: 0;
+}
+hr {
+  background-color: gray;
+  height: 0.1em;
+}
+.left-space {
+  padding-left: 3em;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  margin: 10px;
+  text-align: start;
+  width: 45%;
+  flex-wrap: wrap;
+}
+
+.observaciones {
+  padding: 0 0.8em;
+}
+
+.observaciones ul {
+  padding-left: 2em;
+}
+
+.observaciones ul > li {
+  list-style-type: '➜ ';
+  padding: 0.5em 0;
+}

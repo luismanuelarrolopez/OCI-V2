@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-header>
+        <nav mat-tab-nav-bar back fxFlex="95%">
+            <a fxFlex="{{anchoCeldas}}%" mat-tab-link *ngFor="let link of inLinks" (click)="activeLink = link" [routerLink]="[link.path]" [active]="activeLink === link" [disabled]="link.disabled">
+        {{ link.nombre }}
+      </a>
+        </nav>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-content></ng-content>
+    </mat-card-content>
+</mat-card>

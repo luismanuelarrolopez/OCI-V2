@@ -1,0 +1,52 @@
+<div class="paddingx">
+    <div>
+        <h2 class="font-weight-normal">Historial de ingresos</h2>
+        <p class="font-weight-light">{{ rol | slice: 5 | capitalize | liderProceso }}</p>
+        <p>
+            <small>{{ correo }}</small>
+        </p>
+    </div>
+    <br />
+    <div fxLayout="column" fxLayoutGap="20px">
+        <form [formGroup]="busquedaForm">
+            <div fxLayout="column">
+                <div fxLayout="row" fxFill fxLayoutGap="20px">
+                    <mat-form-field fxFlex="1 1 calc(50% - 20px)">
+                        <mat-label>Fecha inicio</mat-label>
+                        <input matInput id="fechaInicio" placeholder="Fecha inicio" formControlName="fechaInicio" [max]="fechaMaxima" [matDatepicker]="fechaInicio" readonly />
+                        <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaInicio></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="1 1 calc(50% - 20px)">
+                        <mat-label>Fecha Fin</mat-label>
+                        <input matInput id="fechaFin" placeholder="Fecha fin" formControlName="fechaFin" [min]="datofecha1" [max]="fechaHoy" (dateChange)="cambiarFechaActual()" [matDatepicker]="fechaFin" readonly />
+                        <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaFin></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+                    <div>
+                        <button mat-raised-button type="submit" color="primary" (click)="buscarOnclick()">
+            Buscar
+          </button>
+                    </div>
+                    <div>
+                        <div *ngIf="mostrarTodo">
+                            <button mat-raised-button type="submit" (click)="reset()">
+              Mostrar todo los registros
+            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--Tabla-->
+        <div fxFill>
+            <unicauca-tabla [inTituloTabla]="titulo" [inColumnas]="columnas" [inStreamDatos$]="streamDatos$" [inActivarFiltroItems]="activarFiltroItems" inPlaceholderFiltroItems="Filtrar historial de ingresos">
+            </unicauca-tabla>
+        </div>
+    </div>
+</div>

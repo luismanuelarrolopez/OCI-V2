@@ -1,0 +1,15 @@
+.container-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  padding: 2em 0;
+}
+
+@media (max-width: 640px) {
+  .container-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+    padding: 2em 0;
+  }
+}

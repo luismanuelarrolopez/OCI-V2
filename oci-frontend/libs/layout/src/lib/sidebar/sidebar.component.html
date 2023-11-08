@@ -1,0 +1,86 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <app-info-usuario
+      style="justify-content: center; align-items: center"
+    ></app-info-usuario>
+    <hr />
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a
+        *ngFor="let item of inItemsMenu"
+        mat-list-item
+        [routerLink]="item.ruta"
+        routerLinkActive="link-activado"
+      >
+        <mat-icon aria-hidden="false">{{ item.icon }}</mat-icon>
+        {{ item.nombre }}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <h4>Oficina de Control Interno</h4>
+        <span class="example-spacer"></span>
+
+        <div *ngIf="!inIsAuthenticated">
+          <a [routerLink]="['']" class="btn btn-outline-primary"
+            >Iniciar Sesión</a
+          >
+        </div>
+
+        <div *ngIf="inIsAuthenticated" class="dropdown">
+          <a
+            class="btn btn-outline-primary dropdown-toggle"
+            role="button"
+            id="dropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            {{ inInfoUsuario.nombre }}
+          </a>
+        </div>
+
+        <div>
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onCambiarContrasena()">
+              <mat-icon>password</mat-icon>
+              <span>Cambiar contraseña</span>
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+              <mat-icon>logout</mat-icon>
+              <span>Cerrar sesión</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <router-outlet>
+      <unicauca-spinner></unicauca-spinner>
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,156 @@
+<div fxLayout="column" fxLayoutGap="20px">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <!-- Datos del plan -->
+    <div fxLayout="column">
+      <!-- Nombre plan -->
+      <div fxLayout="row" fxLayoutGap="20px">
+        <h4>Plan de mejora:</h4>
+        <p>{{ nombrePlan }}</p>
+      </div>
+      <!-- Fecha fin del plan -->
+      <div fxLayout="row" fxLayoutGap="20px">
+        <h4>Fecha de finalización del plan de mejora:</h4>
+        <p>{{ fechaFinPlan | date: 'mediumDate' }}</p>
+      </div>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="onVolverAlTableroAuditor()"
+      >
+        Volver
+      </button>
+    </div>
+  </div>
+  <!-- Las actividades -->
+  <div>
+    <mat-divider></mat-divider>
+    <br />
+
+    <div style="padding: 0 3em">
+      <h2>Actividades</h2>
+      <br />
+      <p *ngIf="listaActividades.length === 0">
+        No hay actividades registradas
+      </p>
+      <mat-accordion>
+        <mat-expansion-panel
+          *ngFor="let actividad of listaActividades"
+          (opened)="openPanel(actividad)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ actividad.descripcionActividad }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <button
+                mat-raised-button
+                color="primary"
+                type="button"
+                (click)="onActualizarAvance()"
+              >
+                Actualizar avance
+              </button>
+            </div>
+            <div>
+              <span style="font-size: 1.1em">
+                <strong
+                  >Avance actual de la actividad:
+                  {{ actividad.avance }}%</strong
+                >
+              </span>
+            </div>
+          </div>
+
+          <br />
+          <!-- Tipo evidencia -->
+          <div class="tipo-evidencia" fxLayout="row">
+            <h4 class="text-tipo-evidencia">TIPO DE EVIDENCIA A SUBIR: </h4> <br>
+            <h4> {{actividad.tipoEvidencia}}</h4>
+          </div>
+          <p>
+            <!--EVIDENCIAS-->
+            <unicauca-tabla
+              [inTituloTabla]="titulo"
+              [inColumnas]="columnas"
+              [inStreamDatos$]="streamDatos$"
+              [inActivarBtns]="estadoButtons"
+              [inActivarFiltroItems]="activarFiltroItems"
+              inPlaceholderFiltroItems="Filtrar"
+              (outEditar$)="onEditar($event)"
+            >
+            </unicauca-tabla>
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <!-- <mat-sidenav-container class="example-container">
+      <mat-sidenav
+        #sidenav
+        mode="side"
+        [opened]="opened"
+        class="example-sidenav"
+      >
+        <mat-list>
+          <mat-list-item>
+            <h4>Actividades</h4>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-radio-group
+            class="margen"
+            fxLayout="column"
+            fxLayoutGap="30px"
+            [(ngModel)]="actividadSeleccionada"
+            (ngModelChange)="onChangeActividad()"
+          >
+            <mat-list-item *ngFor="let actividad of listaActividades">
+              <mat-radio-button [value]="actividad">
+                {{ actividad.actividad }}
+              </mat-radio-button>
+            </mat-list-item>
+          </mat-radio-group>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <div fxLayoutAlign="end end">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="click()"
+          >
+            {{ opened ? 'Extraer' : 'Abrir' }} actividades
+          </button>
+        </div>
+        <div fxLayoutAlign="end end">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="click()"
+          >
+            {{ opened ? 'Extraer' : 'Abrir' }} actividades
+          </button>
+        </div>
+        <p>
+          <unicauca-tabla
+            [inTituloTabla]="titulo"
+            [inColumnas]="columnas"
+            [inStreamDatos$]="streamDatos$"
+            [inActivarBtns]="estadoButtons"
+            [inActivarFiltroItems]="activarFiltroItems"
+            inPlaceholderFiltroItems="Filtrar"
+            (outEditar$)="onEditar($event)"
+          >
+          </unicauca-tabla>
+        </p>
+      </mat-sidenav-content>
+    </mat-sidenav-container> -->
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div fxLayout="column" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutAlign="space-between">
+        <!-- Datos del plan -->
+        <div fxLayout="column">
+            <!-- Nombre plan -->
+            <div fxLayout="row" fxLayoutGap="20px">
+                <h4>Plan de mejora: </h4>
+                <p>{{nombrePlan}}</p>
+            </div>
+            <!-- Fecha fin del plan -->
+            <div fxLayout="row" fxLayoutGap="20px">
+                <h4>Fecha de finalización del plan de mejora: </h4>
+                <p>{{fechaFinPlan | date: 'mediumDate'}}</p>
+            </div>
+            <!-- Tipo acción -->
+            <div fxLayout="row" fxLayoutGap="20px">
+                <h4>Descripción de la acción: </h4>
+                <p>{{tipoAccion}}</p>
+            </div>
+        </div>
+        <div>
+            <button mat-raised-button color="warn" (click)="volverAlTablerResponsable()">Volver</button>
+        </div>
+    </div>
+
+    <!-- Las actividades -->
+    <div>
+        <mat-sidenav-container class="example-container">
+            <mat-sidenav #sidenav mode="side" [opened]="opened" class="example-sidenav">
+                <mat-list>
+                    <mat-list-item>
+                        <h4>Actividades</h4>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <!-- <mat-list-item></mat-list-item> -->
+                    <mat-radio-group class="margen" fxLayout="column" fxLayoutGap="30px" [(ngModel)]="actividadSeleccionada" (ngModelChange)="onChangeActividad()">
+                        <mat-list-item *ngFor="let actividad of listaActividades">
+                            <mat-radio-button [value]="actividad">
+                                {{actividad.indicador}}
+                              <!-- Tipo evidencia -->
+                              <div class="tipo-evidencia" fxLayout="row">
+                                <h5 class="text-tipo-evidencia">TIPO DE EVIDENCIA A SUBIR: </h5> <br>
+                                <h5> {{actividad.tipoEvidencia}}</h5>
+                              </div>
+                            </mat-radio-button>
+                        </mat-list-item>
+                    </mat-radio-group>
+                    <mat-divider></mat-divider>
+                </mat-list>
+            </mat-sidenav>
+
+            <mat-sidenav-content>
+                <div fxLayoutAlign="end end"><button mat-raised-button color="primary" type="button" (click)="click()">{{opened ? 'Extraer' : 'Abrir'}} actividades</button></div>
+                <p>
+                    <unicauca-tabla [inTituloTabla]="titulo" [inColumnas]="columnas" [inStreamDatos$]="streamDatos$" [inActivarBtns]="estadoButtons" [inActivarFiltroItems]="activarFiltroItems" inPlaceholderFiltroItems="Filtrar" (outEditar$)="onEditar($event)">
+                    </unicauca-tabla>
+                </p>
+                <div fxLayoutAlign="end end">
+                    <button mat-raised-button color="primary" (click)="subirEvidencia()">Subir evidencia</button>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</div>

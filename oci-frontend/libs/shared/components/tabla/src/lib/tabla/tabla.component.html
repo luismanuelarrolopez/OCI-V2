@@ -1,0 +1,172 @@
+<mat-card>
+  <mat-card-title>
+    <strong>{{ inTituloTabla }} </strong></mat-card-title
+  >
+  <mat-card-content fxLayout="column" fxLayoutGap="30px">
+    <div
+      *ngIf="inActivarFiltroItems"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          [placeholder]="inPlaceholderFiltroItems"
+          (keyup)="onAplicarFiltroItems($event)"
+          #input
+        />
+      </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+      <ng-container
+        [matColumnDef]="column.nombreCelda"
+        *ngFor="let column of inColumnas; let i = index"
+      >
+        <div *ngIf="!column.tipo">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.nombreCeldaHeader }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element[column.nombreCelda] }}
+          </td>
+        </div>
+        <div *ngIf="column.tipo === tipoColumna.FECHA">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.nombreCeldaHeader }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element[column.nombreCelda] | date: 'yyyy-MM-dd h:mm a' }}
+          </td>
+        </div>
+        <div *ngIf="column.tipo === tipoColumna.FECHA_SIN_HORA">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.nombreCeldaHeader }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element[column.nombreCelda] | date: 'dd/MM/yyyy' }}
+          </td>
+        </div>
+        <div *ngIf="column.tipo === tipoColumna.ROL">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.nombreCeldaHeader }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{
+              element[column.nombreCelda] | slice: 5 | capitalize | liderProceso
+            }}
+          </td>
+        </div>
+        <div *ngIf="column.tipo === tipoColumna.ACCIONES">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.nombreCeldaHeader }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div fxlayout="row" fxLayoutAing="space-around center">
+              <button
+                *ngIf="inActivarBtns.crear"
+                (click)="onCrearHallazgo(element)"
+                class="btn-agregar-hallazgo"
+                mat-icon-button
+                matTooltip="{{ inNombreAgregarOVerAuditor }} {{
+                  inNombreAgregar
+                }}"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>skip_next</mat-icon>
+              </button>
+              <button
+                *ngIf="inActivarBtns.visualizar"
+                (click)="onVisualizarHallazgo(element)"
+                class="btn-ver-plan"
+                mat-icon-button
+                matTooltip="Ver {{ inVerEvidencia }}"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+              <button
+                *ngIf="inActivarBtns.editar"
+                (click)="onEditarHallazgo(element)"
+                class="btn-editar-plan"
+                mat-icon-button
+                matTooltip="Editar"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>mode_edit</mat-icon>
+              </button>
+              <button
+                *ngIf="inActivarBtns.eliminar"
+                (click)="onEliminarHallazgo(element)"
+                class="btn-estado-plan"
+                mat-icon-button
+                matTooltip="Eliminar"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button
+                *ngIf="inActivarBtns.crearObservacion"
+                (click)="onCrearObservacion(element)"
+                class="btn-add-obervacion"
+                mat-icon-button
+                matTooltip="Crear Obervacion"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>add_alert</mat-icon>
+              </button>
+              <button
+                *ngIf="inActivarBtns.verObservacion"
+                (click)="onVerObservacion(element)"
+                class="btn-ver-observacion"
+                mat-icon-button
+                matTooltip="Ver Obervacion"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>notification_important</mat-icon>
+              </button>
+
+              <button
+                *ngIf="inActivarBtns.adjuntarEvidencia"
+                (click)="onAdjuntarEvidencia(element)"
+                mat-icon-button
+                matTooltip="Adjuntar evidencia"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>attach_file</mat-icon>
+              </button>
+              <button
+                *ngIf="inActivarBtns.upload"
+                mat-icon-button
+                matTooltip="Ver un archivo"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>upload_file</mat-icon>
+              </button>
+              <!-- <mat-checkbox *ngIf="inActivarBtns.seleccionar" (click)="$event.stopPropagation(); onSeleccionarElemento(element)" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                            </mat-checkbox> -->
+              <button
+                *ngIf="inActivarBtns.seleccionar"
+                (click)="onSeleccionarElemento(element)"
+                mat-icon-button
+                matTooltip="Seleccionar datos"
+                [matTooltipPosition]="'above'"
+              >
+                <mat-icon>done</mat-icon>
+              </button>
+            </div>
+          </td>
+        </div>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="nombresCeldasTabla"></tr>
+      <tr mat-row *matRowDef="let row; columns: nombresCeldasTabla"></tr>
+    </table>
+    <div *ngIf="siLaTablaNoTieneDatos" fxLayoutAlign="center center">
+      <h3>No hay datos para mostrar</h3>
+    </div>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </mat-card-content>
+</mat-card>

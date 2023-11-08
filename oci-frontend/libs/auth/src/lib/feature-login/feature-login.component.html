@@ -1,0 +1,119 @@
+<unicauca-spinner></unicauca-spinner>
+<section class="login-container" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card
+    class="card-container"
+    fxLayout="column"
+    fxLayoutAlign="space-around center"
+  >
+    <mat-card-header
+      class="login-header"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <div class="logo" fxLayout="column" fxLayoutAlign="space-around center">
+        <div class="icon">
+          <mat-icon>account_box</mat-icon>
+        </div>
+        <mat-card-title>Oficina de Control Interno</mat-card-title>
+        <mat-card-subtitle>Universidad del Cauca</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <form
+      id="login-form"
+      #lForm="ngForm"
+      [formGroup]="loginForm"
+      (ngSubmit)="submitLogin()"
+      novalidate
+    >
+      <mat-card-content>
+        <mat-form-field
+          style="width: 100%; margin-bottom: 10px"
+          [ngClass]="{ 'mat-input-invalid': submitted && error?.code == 1 }"
+        >
+          <input
+            matInput
+            type="text"
+            formControlName="username"
+            placeholder="Usuario"
+          />
+          <div>
+            <mat-hint
+              style="color: red"
+              *ngIf="
+                submitted &&
+                error?.code == 1 &&
+                !loginForm.controls.username.hasError('required')
+              "
+              >{{ error.message }}</mat-hint
+            >
+            <mat-hint
+              style="color: red"
+              *ngIf="
+                submitted && loginForm.controls.username.hasError('required')
+              "
+              >*Usuario requerido</mat-hint
+            >
+          </div>
+        </mat-form-field>
+        <mat-form-field
+          style="width: 100%"
+          [ngClass]="{ 'mat-input-invalid': submitted && error?.code == 2 }"
+        >
+          <input
+            matInput
+            type="{{ hidePassword ? 'password' : 'text' }}"
+            formControlName="password"
+            placeholder="Contraseña"
+          />
+          <button mat-icon-button matSuffix (click)="togglePasswordVisibility($event)">
+            <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+          <div>
+            <mat-hint
+              style="color: red"
+              *ngIf="
+                submitted &&
+                error?.code == 2 &&
+                !loginForm.controls.password.hasError('required')
+              "
+              >{{ error.message }}</mat-hint
+            >
+            <mat-hint
+              style="color: red"
+              *ngIf="
+                submitted && loginForm.controls.password.hasError('required')
+              "
+              >*Contraseña requerida</mat-hint
+            >
+          </div>
+        </mat-form-field>
+      </mat-card-content>
+      <div
+        class="button"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="15px"
+      >
+        <button
+          fxFill
+          mat-raised-button
+          color="primary"
+          type="submit"
+          form="login-form"
+        >
+          Inicia sesión
+        </button>
+        <div>
+          <a (click)="rutaOlvidoContra()"
+            ><span>¿Olvidaste tu contraseña?</span></a
+          >
+        </div>
+      </div>
+    </form>
+    <div></div>
+    <div></div>
+  </mat-card>
+  <div class="image-logo-lema">
+    <img src="../../../../assets/images/lema y logo.png"  width="250" height="120" alt="Logo" />
+  </div>
+</section>

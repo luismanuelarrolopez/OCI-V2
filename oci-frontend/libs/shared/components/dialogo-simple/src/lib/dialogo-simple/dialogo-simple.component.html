@@ -1,0 +1,27 @@
+<mat-dialog-content>
+    <h4 style="margin: 0;">{{ data.titulo }}</h4>
+    <div fxLayout="row">
+        <div *ngIf="data.tipo" fxFlex="calc(7%)">
+            <span [ngSwitch]="data?.tipo">
+        <ng-container *ngSwitchCase="'advertencia'">
+          <mat-icon class="icon-advertencia advertencia"> warning </mat-icon>
+        </ng-container>
+        <ng-container *ngSwitchCase="'info'">
+          <mat-icon class="icon-info info"> info </mat-icon>
+        </ng-container>
+        <ng-container *ngSwitchCase="'error'">
+          <mat-icon class="icon-error error"> close </mat-icon>
+        </ng-container>
+      </span>
+        </div>
+        <div class="centrar-texto" fxFlex="calc(80%)" [innerHTML]="data.contenido"></div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button type="button" color="primary" (click)="onAceptacion()">
+    {{ data.opcionAceptar }}
+  </button>
+    <button *ngIf="data.opcionCancelar" mat-raised-button color="warn" type="button" (click)="onCancelacion()">
+    {{ data.opcionCancelar }}
+  </button>
+</mat-dialog-actions>

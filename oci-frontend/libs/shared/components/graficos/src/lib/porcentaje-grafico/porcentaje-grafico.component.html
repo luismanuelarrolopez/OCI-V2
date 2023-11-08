@@ -1,0 +1,21 @@
+<mat-card>
+  <div class="box">
+    <span class="text">{{ titulo }}</span>
+    <div class="percent">
+      <svg>
+        <circle cx="55" cy="55" r="55"></circle>
+
+        <circle
+          *ngIf="porcentaje > 0"
+          cx="55"
+          cy="55"
+          r="55"
+          [ngStyle]="{ 'stroke-dashoffset': dashoffset }"
+        ></circle>
+      </svg>
+      <div class="number">
+        <h2>{{ porcentaje }}<span>%</span></h2>
+      </div>
+    </div>
+  </div>
+</mat-card>

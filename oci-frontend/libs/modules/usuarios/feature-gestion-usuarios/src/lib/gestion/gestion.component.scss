@@ -1,0 +1,48 @@
+.titulo-usuarios,
+.contenedor-formulario {
+  background: rgb(253, 253, 253);
+}
+
+.link-activado {
+  background: rgb(235, 234, 234);
+}
+
+.contenedor-formulario .boton-crearusuario,
+.boton-cancelar {
+  border-color: #0b2975;
+}
+
+.contenedor-formulario .boton-crearusuario {
+  background: #0b2975;
+}
+
+.contenedor-formulario .boton-crearusuario:hover {
+  background: #14378f;
+  color: rgb(253, 253, 253);
+}
+
+.contenedor-formulario .boton-cancelar {
+  color: #0b2975;
+}
+
+.contenedor-formulario .boton-cancelar:hover {
+  background: #2550bb;
+  border-color: #2550bb;
+  color: rgb(253, 253, 253);
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 575.98px) {
+  .btn-cancelar-usuario {
+    margin-top: 10px;
+  }
+}
+
+.paddingx {
+  padding: 0 40px;
+}

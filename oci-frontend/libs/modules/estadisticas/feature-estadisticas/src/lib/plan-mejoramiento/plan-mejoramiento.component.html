@@ -1,0 +1,65 @@
+<div class="row">
+  <section class="col">
+    <br />
+    <div fxFill fxLayout="column" fxLayoutGap="20px" class="paddingx">
+      <div fxFill class="paddingx">
+        <h2 style="text-align: center">
+          Plan de Mejoramiento: {{ nombrePlan }}
+        </h2>
+        <br />
+        <unicauca-tabla
+          style="text-align: center"
+          [inTituloTabla]="titulo"
+          [inColumnas]="columnas"
+          [inStreamDatos$]="streamDatos$"
+          [inActivarBtns]="estadoButtons"
+          [inActivarFiltroItems]="activarFiltroItems"
+          inPlaceholderFiltroItems="Filtrar planes actividades"
+          (outVisualizar$)="onVerDetalles($event)"
+        >
+        </unicauca-tabla>
+        <!--Detalles del plan de mejoramiento-->
+        <div class="container-cards">
+          <unicauca-porcentaje-grafico
+            [porcentaje]="avance"
+            [titulo]="'Avance'"
+          >
+          </unicauca-porcentaje-grafico>
+          <unicauca-circulo-grafico [texto]="noAcciones" [titulo]="'Acciones'">
+          </unicauca-circulo-grafico>
+          <unicauca-porcentaje-grafico
+            [porcentaje]="cumplimiento"
+            [titulo]="'Cumplimiento'"
+          >
+          </unicauca-porcentaje-grafico>
+        </div>
+
+        <!--Gráficos-->
+        <div class="pie-container">
+          <div *ngFor="let detalle of datosGrafico">
+            <unicauca-pastel-grafico
+              [legendTitle]="detalle.titulo"
+              [information]="detalle.datos"
+            ></unicauca-pastel-grafico>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--BOTÓN GENERAR REPORTE-->
+<div class="paddingx">
+  <mat-grid-list cols="1" rowHeight="80px">
+    <mat-grid-tile>
+      <button mat-raised-button [matMenuTriggerFor]="menu" color="primary">
+        Generar reporte
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>PDF</button>
+        <button mat-menu-item (click)="exportExcel()">XLSX</button>
+      </mat-menu>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,35 @@
+table {
+    & th,
+    & td {
+        text-align: center;
+    }
+}
+
+.resaltar:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.contenedor-tabla {
+    position: relative;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.clase-marcada {
+    background: rgba(0, 132, 255, 0.486);
+}
+
+.contenedor-superior {
+    margin: 0 auto;
+}
+
+.ocultar {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

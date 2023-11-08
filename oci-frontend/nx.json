@@ -1,0 +1,77 @@
+{
+  "npmScope": "unicauca",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "control-interno": { "tags": [] },
+    "control-interno-e2e": {
+      "tags": [],
+      "implicitDependencies": ["control-interno"]
+    },
+    "layout": { "tags": [] },
+    "core": { "tags": [] },
+    "auth": { "tags": [] },
+    "shared-data-access": {
+      "tags": ["scope:shared", "scope:modules", "type:data-access"]
+    },
+    "shared-pipes": {
+      "tags": ["scope:shared", "scope:modules", "type:feature"]
+    },
+    "shared-directives": {
+      "tags": ["scope:shared", "scope:modules", "type:feature"]
+    },
+    "shared-components-tabla": {
+      "tags": ["scope:shared", "scope:modules", "type:ui"]
+    },
+    "modules-usuarios-feature-shell": { "tags": ["scope:usuarios"] },
+    "modules-usuarios-data-access": { "tags": [] },
+    "modules-usuarios-feature-gestion-usuarios": { "tags": [] },
+    "modules-plan-mejoramiento-data-access": { "tags": [] },
+    "modules-plan-mejoramiento-feature-shell": { "tags": [] },
+    "shared-components-tabs": { "tags": [] },
+    "modules-plan-mejoramiento-feature-planes-mejora": { "tags": [] },
+    "shared-components-contenedor-dashboard": { "tags": [] },
+    "modules-usuarios-feature-historial-ingresos": { "tags": [] },
+    "modules-usuarios-feature-gestionar-responsables": { "tags": [] },
+    "modules-hallazgos-feature-shell": { "tags": [] },
+    "modules-hallazgos-data-access": { "tags": [] },
+    "modules-hallazgos-feature-hallazgos": { "tags": [] },
+    "modules-causas-feature-shell": { "tags": [] },
+    "modules-causas-data-access": { "tags": [] },
+    "modules-causas-feature-causas": { "tags": [] },
+    "modules-acciones-feature-shell": { "tags": [] },
+    "modules-acciones-data-access": { "tags": [] },
+    "modules-acciones-feature-acciones": { "tags": [] },
+    "modules-actividades-feature-shell": { "tags": [] },
+    "modules-actividades-feature-actividades": { "tags": [] },
+    "modules-actividades-data-access": { "tags": [] },
+    "modules-seguimiento-plan-mejora-feature-shell": { "tags": [] },
+    "modules-seguimiento-plan-mejora-feature-seguimiento": { "tags": [] },
+    "modules-seguimiento-plan-mejora-data-access": { "tags": [] },
+    "shared-components-tabla-lideres": { "tags": [] },
+    "shared-components-spinner": { "tags": [] },
+    "modules-gestion-plan-responsable-feature-shell": { "tags": [] },
+    "modules-gestion-plan-responsable-data-access": { "tags": [] },
+    "modules-gestion-plan-responsable-feature-gestion-plan-responsable": {
+      "tags": []
+    },
+    "shared-components-dialogo-simple": { "tags": [] },
+    "modules-estadisticas-data-access": { "tags": [] },
+    "modules-estadisticas-feature-estadisticas": { "tags": [] },
+    "modules-estadisticas-feature-shell": { "tags": [] },
+    "shared-components-graficos": { "tags": [] }
+  }
+}

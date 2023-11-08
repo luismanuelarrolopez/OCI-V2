@@ -1,0 +1,53 @@
+<div fxLayout="column" fxLayoutGap="30px">
+  <div fxLayoutAlign="center center">
+    <h4>Actualizar avance de la actividad</h4>
+  </div>
+  <!-- Formulario avance-->
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <span style="font-size: 0.8em"
+      >Porcentaje actual: {{ information.avance }}%</span
+    >
+  </div>
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+    <p>Porcentaje de avance:</p>
+    <div fxLayout="column">
+      <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Avance</mat-label>
+          <span matPrefix>% &nbsp;</span>
+          <input
+            type="number"
+            min="0"
+            max="100"
+            matInput
+            [formControl]="avanceFormControl"
+            placeholder="Ej. 98.5"
+          />
+          <mat-error *ngIf="avanceFormControl.hasError('required')">
+            * Este campo es <strong>requerido</strong>
+          </mat-error>
+          <mat-error *ngIf="avanceFormControl.hasError('pattern')">
+            * El valor debe estar <strong>entre 0 y 100 </strong>
+          </mat-error>
+          <mat-hint>El valor debe estar entre 0 y 100</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+  <!-- Botones de modal -->
+  <div fxLayoutAlign="center center" fxLayoutGap="40px">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onGuardar()"
+      [disabled]="avanceFormControl.invalid"
+    >
+      Guardar
+    </button>
+    <button mat-raised-button color="warn" (click)="onCancelar()">
+      Cancelar
+    </button>
+  </div>
+</div>

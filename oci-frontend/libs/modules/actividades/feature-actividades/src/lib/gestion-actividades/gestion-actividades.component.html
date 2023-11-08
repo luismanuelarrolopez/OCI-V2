@@ -1,0 +1,121 @@
+<section class="padding" fxFill fxLayoutAlign="center center">
+    <mat-card fxLayout="column" fxFlex="1 1 calc(100% - 20px)" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <mat-card-header>
+            <mat-card-title>
+                <h3>{{ titulo }}</h3>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxFill>
+            <form [formGroup]="formularioActividad" fxFill (ngSubmit)="onDesicionCreacionOEditar()">
+                <div fxLayoutGap="40px" fxLayout="column">
+                    <!-- Datos básicos de la actividad -->
+                    <div fxLayout="row" fxLayoutGap="60px">
+                        <!-- Indicador, periodicidad, unidad -->
+                        <div fxLayout="column" fxLayoutGap="20px" fxFlex="1 1 calc(50% - 60px)">
+                            <!-- Descripción de la actividad -->
+                            <mat-form-field fxLayout="column">
+                                <mat-label>Descripción de la actividad</mat-label>
+                                <textarea class="bordes-curvos" matInput type="text" id="descripcionActividad" formControlName="descripcionActividad" (keyup)="onKey($event)" [maxlength]="500"></textarea>
+                                <div fxLayout="row" fxLayoutAlign="end end">
+                                    <!-- <div>
+                                        <mat-error *ngIf="descripcion.invalid">
+                                            Campo <strong>requerido</strong>
+                                        </mat-error>
+                                    </div> -->
+                                    <span><strong>{{contador}}</strong> de 500 caracteres</span>
+                                </div>
+                            </mat-form-field>
+                            <!-- Indicador -->
+                            <mat-form-field>
+                                <mat-label>Indicador</mat-label>
+                                <input matInput formControlName="indicador" [maxlength]="200">
+                            </mat-form-field>
+                            <!-- Tipo Evidencia -->
+                            <mat-form-field>
+                                <mat-label>Evidencia de cumplimiento del indicador</mat-label>
+                                <input matInput formControlName="tipoEvidencia" [maxlength]="200">
+                            </mat-form-field>
+                            <!-- Periocidad -->
+                            <mat-form-field>
+                                <mat-label>Periodicidad</mat-label>
+                                <mat-select formControlName="periodicidad">
+                                    <mat-option *ngFor="let periodicidad of listadoPeriocidad" [value]="periodicidad.descripcion">
+                                        {{periodicidad.descripcion}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- Unidad -->
+                          <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column" fxLayout.md="column" fxLayout.sm="column">
+                            <mat-label fxFlex="20%">Unidad</mat-label>
+                            <mat-radio-group fxFlex="60%" fxLayoutGap="20px" id="tipo_unidad" formControlName="tipo_unidad" aria-label="tipo_unidad" (change)="onRadioChange($event.value)" >
+                              <mat-radio-button *ngFor="let options of listaCheck" [value]="options.value">
+                                {{ options.descripcion }}
+                              </mat-radio-button>
+                            </mat-radio-group>
+                            <input matInput fxFlex="20%" type="number"  formControlName="valor_unidad" placeholder="1" min="1" style="border: 1px solid;" [readonly]="tipoUnidad !== true">
+                          </div>
+                        </div>
+
+                      <!-- Recurso, fechas -->
+                        <div fxLayout="column" fxLayoutGap="20px" fxFlex="1 1 calc(50% - 60px)">
+                            <!-- Recurso -->
+                            <mat-form-field>
+                                <mat-label>Recursos</mat-label>
+                                <mat-select formControlName="recurso">
+                                    <mat-option *ngFor="let recurso of listadoRecursos" [value]="recurso.descripcion">
+                                        {{recurso.descripcion}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- Fecha ejecución -->
+                            <mat-form-field>
+                                <mat-label>Fecha de inicio de la actividad</mat-label>
+                                <input matInput id="fechaejecucion" placeholder="Fecha de ejecución" formControlName="fechaEjecucion" [matDatepicker]="fechaejecucion" [min]="fechaInicio" [max]="fechaFinal"  readonly />
+                                <mat-datepicker-toggle matSuffix [for]="fechaejecucion"></mat-datepicker-toggle>
+                                <mat-datepicker #fechaejecucion></mat-datepicker>
+                            </mat-form-field>
+                            <!-- Fecha de terminación -->
+                            <mat-form-field>
+                                <mat-label>Fecha de terminación de la actividad</mat-label>
+                                <input matInput id="fechaTerminacion" placeholder="Fecha de terminación de la actividad" formControlName="fechaTerminacion" [matDatepicker]="fechaTerminacion" [min]="fechaActual" readonly />
+                                <mat-datepicker-toggle matSuffix [for]="fechaTerminacion"></mat-datepicker-toggle>
+                                <mat-datepicker #fechaTerminacion></mat-datepicker>
+                            </mat-form-field>
+                            <!-- Fecha de seguimiento -->
+                            <mat-form-field>
+                                <mat-label>Fecha de seguimiento</mat-label>
+                                <input matInput id="fechaSeguimiento" placeholder="Fecha de seguimiento" formControlName="fechaSeguimiento" [matDatepicker]="fechaSeguimiento" [min]="fechaActual" readonly />
+                                <mat-datepicker-toggle matSuffix [for]="fechaSeguimiento"></mat-datepicker-toggle>
+                                <mat-datepicker #fechaSeguimiento></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- Asignación de responsable -->
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <!-- Tabla responsable -->
+                        <div fxFlex="80%">
+                            <unicauca-tabla-lider fxFill [inTituloTabla]="'Asignar responsable'" [inLider]="'Responsable'" [inColumnas]="columnas" [inStreamDatos$]="streamDatosAuditor$" [inActivarFiltroItems]="'true'" [inPlaceholderFiltroItems]="'Filtrar responsable'" [selectionLider]="selection"
+                                [validadorCheckRequerido]="validadorCheckAuditor" [validadorDisabledCheck]="desactivarCheck" (outSeleccionarUnicaFila$)="onSeleccionarUnicaFilaLiderAuditor($event)"></unicauca-tabla-lider>
+                        </div>
+                        <!-- Botón de guardar -->
+                        <div fxFlex="20%" fxLayoutAlign="center center">
+                            <div fxLayout="row" fxLayout.xs="column" fxLayout.md="column" fxLayout.sm="column" fxLayoutGap="30px" fxLayoutAlign="center center" *ngIf="!mostrarBtnVolver">
+                                <button mat-raised-button type="submit" color="primary">
+                              {{ nombreBoton }}
+                            </button>
+                                <button mat-raised-button type="button" (click)="volver()" color="warn">
+                              Cancelar
+                            </button>
+                            </div>
+                            <div *ngIf="mostrarBtnVolver" fxLayoutAlign="center center">
+                                <button mat-raised-button type="button" (click)="volver()" color="primary">
+                              Volver
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</section>

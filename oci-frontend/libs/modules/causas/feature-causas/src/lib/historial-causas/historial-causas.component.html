@@ -1,0 +1,43 @@
+<main class="padding">
+    <section>
+        <div>
+            <div class="row" style="padding: 40px; align-items: flex-end" fxLayoutAlign="space-between center">
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <mat-label>Plan de Mejoramiento:</mat-label>
+                        <mat-label>
+                            <h4>{{ nombrePlan }}</h4>
+                        </mat-label>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                        <mat-label>Hallazgo:</mat-label>
+                        <mat-label>
+                            <h4>{{ nombreHallazgo }}</h4>
+                        </mat-label>
+                    </div>
+                </div>
+                <div *ngIf="!this.esAuditor">
+                    <button mat-raised-button color="primary" (click)="agregar()">
+            Agregar causa
+          </button>
+                </div>
+            </div>
+            <div fxFill class="paddingx">
+                <unicauca-tabla [inTituloTabla]="titulo"
+                                [inNombreAgregar]="'una acción'"
+                                [inNombreAgregarOVerAuditor]="hintAgregarOVerAuditor"
+                                [inColumnas]="columnas" [inActivarBtns]="estadoButtons"
+                                [inStreamDatos$]="streamDatos$"
+                                [inActivarFiltroItems]="activarFiltroItems"
+                    inPlaceholderFiltroItems="Filtrar causas"
+                                (outEliminar$)="onDeleteCausa($event)"
+                                (outEditar$)="onEditarCausa($event)"
+                                (outVisualizar$)="onVisualizarCausa($event)"
+                                (outCrear$)="onCrearAccion($event)"
+                                (outcrearObservacion$)="onVisualizarObservacion()"
+                                (outverObservacion$)="onVisualizarObservacion()">
+                </unicauca-tabla>
+            </div>
+        </div>
+    </section>
+</main>

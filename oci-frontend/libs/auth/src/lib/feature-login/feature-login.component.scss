@@ -1,0 +1,45 @@
+$colorTop: #0575e6;
+$colorBottom: #051a54;
+.login-container {
+  //Se actualizan los colores de fondo de la interfaz de LOGIN
+  background: #AF0000;
+  background: -webkit-linear-gradient(to bottom, #0F2041, #AF0000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #0F2041, #AF0000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  .card-container {
+    width: 500px;
+    height: 70%;
+    .login-header {
+      height: 200px;
+      width: 400px;
+      .logo {
+        width: 400px;
+        .icon mat-icon {
+          font-size: 100px;
+          width: auto;
+        }
+      }
+    }
+  }
+  .button {
+    width: 400px;
+  }
+}
+
+.alinear-centro {
+  text-align: center;
+}
+
+.image-logo-lema {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.image-bandera {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

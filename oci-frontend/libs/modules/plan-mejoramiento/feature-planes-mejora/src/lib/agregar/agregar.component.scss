@@ -1,0 +1,42 @@
+.padding {
+    padding: 0 25px;
+}
+
+.limte-lista-auditor-proceso {
+    max-height: 100px;
+    overflow: auto;
+}
+
+.tamanoItemLista {
+    font-size: 15px !important;
+    height: 25px !important;
+}
+
+table {
+    & th,
+    & td {
+        text-align: center;
+    }
+}
+
+.resaltar:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.contenedor-tabla {
+    position: relative;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.clase-marcada {
+    background: rgba(0, 132, 255, 0.486);
+}
+
+.contenedor-superior {
+    margin: 0 auto;
+}
+
+.ocultar {
+    display: none;
+}

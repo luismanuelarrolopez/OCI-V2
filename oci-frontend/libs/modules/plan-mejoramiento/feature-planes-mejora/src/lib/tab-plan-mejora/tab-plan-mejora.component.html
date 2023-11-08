@@ -1,0 +1,5 @@
+<unicauca-dashboard [inTitulo]="'Planes de mejoramiento'" [inCorreo]="correo" [inRol]="rol | slice: 5 | capitalize | liderProceso">
+    <unicauca-tabs [inLinks]="links">
+        <router-outlet></router-outlet>
+    </unicauca-tabs>
+</unicauca-dashboard>

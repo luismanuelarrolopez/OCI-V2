@@ -1,0 +1,39 @@
+<main class="row">
+    <section class="col">
+        <div fxFill fxLayout="column" fxLayoutGap="20px" class="paddingx">
+            <div class="col-12 pb-3 px-0 border-bottom border-dark">
+                <h2 class="m-0 p-0 font-weight-normal">Gestionar Usuarios</h2>
+                <p class="m-0 font-weight-light">
+                    {{ authService.getUsuario().objRole[0] | slice: 5 | capitalize | liderProceso }}
+                </p>
+                <p class="m-0">
+                    <small>{{ authService.getUsuario().objPerson.email }}</small>
+                </p>
+            </div>
+            <div fxFill class="paddingx">
+                <div fxLayoutAlign="end center">
+                    <div fxLayoutAlign="center center">
+                        <a [routerLink]="['/home/admin/gestion-usuarios/gestion']" class="btn-agregar-usuario d-flex justify-content-center align-items-center btn btn-primary text-center" objRolee="button">
+                            <span fxLayoutAlign="center center" class="material-icons">person_add</span
+              >
+              <p>Agregar un usuario</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div fxFill class="paddingx">
+        <unicauca-tabla
+          [inColumnas]="columnas"
+          [inActivarBtns]="estadoButtons"
+          [inStreamDatos$]="streamDatos$"
+          inTituloTabla=""
+          [inActivarFiltroItems]="activarFiltroItems"
+          inPlaceholderFiltroItems="Filtro usuarios"
+          (outEliminar$)="onDeleteUsuario($event)"
+          (outVisualizar$)="onVisualizar($event)"
+          (outEditar$)="onEditarUsuario($event)"
+        ></unicauca-tabla>
+      </div>
+    </div>
+  </section>
+</main>

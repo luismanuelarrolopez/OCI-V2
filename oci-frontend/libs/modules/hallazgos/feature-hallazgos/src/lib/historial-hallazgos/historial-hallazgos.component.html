@@ -1,0 +1,35 @@
+<main class="padding">
+    <section>
+        <div>
+            <div class="row" style="padding: 40px; align-items: flex-end" fxLayoutAlign="space-between center">
+                <div fxLayout="row" fxLayoutGap="20px">
+                    <mat-label>Plan de Mejoramiento:</mat-label>
+                    <mat-label>
+                        <h4>{{ nombrePlan }}</h4>
+                    </mat-label>
+                </div>
+                <div *ngIf="!this.esAuditor">
+                    <button mat-raised-button color="primary" (click)="agregar()">
+            Agregar hallazgo
+          </button>
+                </div>
+            </div>
+            <div fxFill class="paddingx">
+                <unicauca-tabla [inTituloTabla]="titulo"
+                                [inNombreAgregar]="'una causa'"
+                                [inNombreAgregarOVerAuditor]="hintAgregarOVerAuditor"
+                                [inColumnas]="columnas" [inActivarBtns]="estadoButtons"
+                                [inStreamDatos$]="streamDatos$"
+                                [inActivarFiltroItems]="activarFiltroItems"
+                    inPlaceholderFiltroItems="Filtrar hallazgos"
+                                (outEliminar$)="onDeletePlan($event)"
+                                (outEditar$)="onEditarPlan($event)"
+                                (outVisualizar$)="onVisualizar($event)"
+                                (outCrear$)="onCrearCausas($event)"
+                                (outcrearObservacion$)="onVisualizarObservacion()"
+                                (outverObservacion$)="onVisualizarObservacion()">
+                </unicauca-tabla>
+            </div>
+        </div>
+    </section>
+</main>

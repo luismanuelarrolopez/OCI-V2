@@ -1,0 +1,67 @@
+<h4 mat-dialog-title>Actividad</h4>
+<hr />
+<mat-dialog-content class="mat-typography">
+  <div>
+    <h3>Descripción de la actividad</h3>
+    <p>{{ data.descripcionActividad }}</p>
+  </div>
+  <div class="flex-container">
+    <div>
+      <h3>Periodicidad</h3>
+      <p>{{ data.periodicidad }}</p>
+    </div>
+
+    <div>
+      <h3>Indicador</h3>
+      <p>{{ data.indicador }}</p>
+    </div>
+
+    <div>
+      <h3>Tipo unidad</h3>
+      <p>{{ data.tipo_unidad === 'N' ? 'Número' : 'Porcentaje' }}</p>
+    </div>
+
+    <div>
+      <h3>Valor unidad</h3>
+      <p>{{ data.valor_unidad }}</p>
+    </div>
+
+    <div>
+      <h3>Recursos</h3>
+      <p>{{ data.recurso }}</p>
+    </div>
+
+    <div>
+      <h3>Estado</h3>
+      <p>{{ data.estado }}</p>
+    </div>
+
+    <div>
+      <h3>Fecha de Ejecución</h3>
+      <p>{{ data.fechaEjecucion | date: 'dd/MM/yyy' }}</p>
+    </div>
+
+    <div>
+      <h3>Fecha de Terminación</h3>
+      <p>{{ data.fechaTerminacion | date: 'dd/MM/yyy' }}</p>
+    </div>
+
+    <div>
+      <h3>Fecha de Seguimiento</h3>
+      <p>{{ data.fechaSeguimiento | date: 'dd/MM/yyy' }}</p>
+    </div>
+
+    <div>
+      <h3>Porcentaje de Avance</h3>
+      <p>{{ data.avance }}%</p>
+    </div>
+
+    <div>
+      <h3>Cumplimiento</h3>
+      <p>{{ data.cumplimiento }}</p>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close primary>Cerrar</button>
+</mat-dialog-actions>

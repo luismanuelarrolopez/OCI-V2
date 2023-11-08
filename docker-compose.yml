@@ -1,0 +1,50 @@
+version: "3"
+services:
+  oci_db:
+    image: mysql:8
+    container_name: oci_mysql
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_DATABASE=db_proyecto_oci
+      - MYSQL_ROOT_PASSWORD=ocidb12345
+    networks:
+      - oci_network
+    volumes: 
+      - MySQLDBData
+  
+  oci_backend:
+    build:
+      context: oci-backend/
+      dockerfile: Dockerfile
+    container_name: oci_backend
+    ports:
+      - "5000:5000"
+    environment: 
+      - MYSQL_HOST=oci_mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=ocidb12345
+    restart: unless-stopped
+    depends_on:
+      - oci_db
+    networks:
+      - oci_network
+
+  oci_frontend:
+    build:
+      context: oci-frontend/
+      dockerfile: Dockerfile
+    container_name: oci_frontend
+    ports:
+      - "4201:80"
+    restart: unless-stopped
+    depends_on:
+      - oci_backend
+
+volumes:
+  MySQLDBData:
+    name: MySQLDBData
+
+networks:
+  oci_network:

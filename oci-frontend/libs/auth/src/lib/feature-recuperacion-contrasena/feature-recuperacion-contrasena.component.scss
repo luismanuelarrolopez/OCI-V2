@@ -1,0 +1,24 @@
+$colorTop: #0575e6;
+$colorBottom: #051a54;
+.login-container {
+  background: linear-gradient($colorTop, $colorBottom);
+  // background-color: #f3f3f3;
+  .card-container {
+    width: 500px;
+    height: 70%;
+    .login-header {
+      height: 200px;
+      width: 400px;
+      .logo {
+        width: 400px;
+        .icon mat-icon {
+          font-size: 100px;
+          width: auto;
+        }
+      }
+    }
+  }
+  .button {
+    width: 400px;
+  }
+}

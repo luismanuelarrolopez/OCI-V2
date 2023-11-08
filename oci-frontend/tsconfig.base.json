@@ -1,0 +1,135 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@unicauca/layout": ["libs/layout/src/index.ts"],
+      "@unicauca/core": ["libs/core/src/index.ts"],
+      "@unicauca/auth": ["libs/auth/src/index.ts"],
+      "@unicauca/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@unicauca/shared/pipes": ["libs/shared/pipes/src/index.ts"],
+      "@unicauca/shared/directives": ["libs/shared/directives/src/index.ts"],
+      "@unicauca/shared/components/tabla": [
+        "libs/shared/components/tabla/src/index.ts"
+      ],
+      "@unicauca/modules/usuarios/feature-shell": [
+        "libs/modules/usuarios/feature-shell/src/index.ts"
+      ],
+      "@unicauca/modules/usuarios/data-access": [
+        "libs/modules/usuarios/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/usuarios/feature-gestion-usuarios": [
+        "libs/modules/usuarios/feature-gestion-usuarios/src/index.ts"
+      ],
+      "@unicauca/modules/plan-mejoramiento/data-access": [
+        "libs/modules/plan-mejoramiento/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/plan-mejoramiento/feature-shell": [
+        "libs/modules/plan-mejoramiento/feature-shell/src/index.ts"
+      ],
+      "@unicauca/shared/components/tabs": [
+        "libs/shared/components/tabs/src/index.ts"
+      ],
+      "@unicauca/modules/plan-mejoramiento/feature-planes-mejora": [
+        "libs/modules/plan-mejoramiento/feature-planes-mejora/src/index.ts"
+      ],
+      "@unicauca/shared/components/contenedor-dashboard": [
+        "libs/shared/components/contenedor-dashboard/src/index.ts"
+      ],
+      "@unicauca/modules/usuarios/feature-historial-ingresos": [
+        "libs/modules/usuarios/feature-historial-ingresos/src/index.ts"
+      ],
+      "@unicauca/modules/usuarios/feature-gestionar-responsables": [
+        "libs/modules/usuarios/feature-gestionar-responsables/src/index.ts"
+      ],
+      "@unicauca/modules/hallazgos/feature-shell": [
+        "libs/modules/hallazgos/feature-shell/src/index.ts"
+      ],
+      "@unicauca/modules/hallazgos/data-access": [
+        "libs/modules/hallazgos/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/hallazgos/feature-hallazgos": [
+        "libs/modules/hallazgos/feature-hallazgos/src/index.ts"
+      ],
+      "@unicauca/modules/causas/feature-shell": [
+        "libs/modules/causas/feature-shell/src/index.ts"
+      ],
+      "@unicauca/modules/causas/data-access": [
+        "libs/modules/causas/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/causas/feature-causas": [
+        "libs/modules/causas/feature-causas/src/index.ts"
+      ],
+      "@unicauca/modules/acciones/feature-shell": [
+        "libs/modules/acciones/feature-shell/src/index.ts"
+      ],
+      "@unicauca/modules/acciones/data-access": [
+        "libs/modules/acciones/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/acciones/feature-acciones": [
+        "libs/modules/acciones/feature-acciones/src/index.ts"
+      ],
+      "@unicauca/modules/actividades/feature-shell": [
+        "libs/modules/actividades/feature-shell/src/index.ts"
+      ],
+      "@unicauca/modules/actividades/feature-actividades": [
+        "libs/modules/actividades/feature-actividades/src/index.ts"
+      ],
+      "@unicauca/modules/actividades/data-access": [
+        "libs/modules/actividades/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/seguimiento-plan-mejora/feature-shell": [
+        "libs/modules/seguimiento-plan-mejora/feature-shell/src/index.ts"
+      ],
+      "@unicauca/modules/seguimiento-plan-mejora/feature-seguimiento": [
+        "libs/modules/seguimiento-plan-mejora/feature-seguimiento/src/index.ts"
+      ],
+      "@unicauca/modules/seguimiento-plan-mejora/data-access": [
+        "libs/modules/seguimiento-plan-mejora/data-access/src/index.ts"
+      ],
+      "@unicauca/shared/components/tabla-lideres": [
+        "libs/shared/components/tabla-lideres/src/index.ts"
+      ],
+      "@unicauca/shared/components/spinner": [
+        "libs/shared/components/spinner/src/index.ts"
+      ],
+      "@unicauca/modules/gestion-plan-responsable/feature-shell": [
+        "libs/modules/gestion-plan-responsable/feature-shell/src/index.ts"
+      ],
+      "@unicauca/modules/gestion-plan-responsable/data-access": [
+        "libs/modules/gestion-plan-responsable/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/gestion-plan-responsable/feature-gestion-plan-responsable": [
+        "libs/modules/gestion-plan-responsable/feature-gestion-plan-responsable/src/index.ts"
+      ],
+      "@unicauca/shared/components/dialogo-simple": [
+        "libs/shared/components/dialogo-simple/src/index.ts"
+      ],
+      "@unicauca/modules/estadisticas/data-access": [
+        "libs/modules/estadisticas/data-access/src/index.ts"
+      ],
+      "@unicauca/modules/estadisticas/feature-estadisticas": [
+        "libs/modules/estadisticas/feature-estadisticas/src/index.ts"
+      ],
+      "@unicauca/modules/estadisticas/feature-shell": [
+        "libs/modules/estadisticas/feature-shell/src/index.ts"
+      ],
+      "@unicauca/shared/components/graficos": [
+        "libs/shared/components/graficos/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

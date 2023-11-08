@@ -1,0 +1,12 @@
+<div fxLayout="column" fxFill>
+  <app-sidebar
+    fxFill
+    [inInfoUsuario]="InfoUsuario"
+    [inItemsMenu]="itemsMenu$ | async"
+    [inIsAuthenticated]="isAuthenticated"
+    (outLogout)="onLogout($event)"
+    (outCambiarContrasena)="onCambiarContrasena($event)"
+  ></app-sidebar>
+
+  <app-footer fxFlexOffset="auto"></app-footer>
+</div>

@@ -1,0 +1,33 @@
+<div class="row">
+  <section class="col">
+    <br />
+    <div fxFill fxLayout="column" fxLayoutGap="20px" class="paddingx">
+      <div fxFill class="paddingx">
+        <!--<h2 style="text-align: center">Control Planes de Mejora</h2>-->
+        <br />
+        <unicauca-tabla
+          style="text-align: center"
+          [inTituloTabla]="titulo"
+          [inColumnas]="columnas"
+          [inStreamDatos$]="streamDatos$"
+          [inActivarBtns]="estadoButtons"
+          [inActivarFiltroItems]="activarFiltroItems"
+          inPlaceholderFiltroItems="Filtrar planes de mejora"
+          (outVisualizar$)="onVerDetalles($event)"
+        >
+        </unicauca-tabla>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--BOTÓN GENERAR REPORTE-->
+<div class="paddingx">
+  <mat-grid-list cols="1" rowHeight="80px">
+    <mat-grid-tile>
+      <button mat-raised-button color="primary" (click)="exportExcel()">
+        Generar reporte
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

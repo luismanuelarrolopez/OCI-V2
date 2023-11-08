@@ -1,0 +1,66 @@
+<!--LISTADO DE PROCESOS-->
+<br />
+<div class="row">
+  <section class="col">
+    <div fxFill fxLayout="column" fxLayoutGap="20px" class="paddingx">
+      <div fxFill class="paddingx">
+        <unicauca-tabla
+          style="text-align: center"
+          [inTituloTabla]="titulo"
+          [inColumnas]="columnas"
+          [inStreamDatos$]="streamDatos$"
+          [inActivarBtns]="estadoButtons"
+          [inActivarFiltroItems]="activarFiltroItems"
+          inPlaceholderFiltroItems="Filtrar procesos"
+          (outVisualizar$)="onVerDetalles($event)"
+        >
+        </unicauca-tabla>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--PLAN DE MEJORA INSTITUCIONAL-->
+<div class="card-margin">
+  <div class="fxFill" class="paddingx">
+    <div class="paddingx" style="text-align: center">
+      <br />
+      <h2>Plan de Mejora Institucional</h2>
+      <div
+        class="container-cards"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <div *ngFor="let elemento of cantidades | objectToArray">
+          <unicauca-circulo-grafico
+            [titulo]="elemento.titulo"
+            [texto]="elemento.valor"
+          >
+          </unicauca-circulo-grafico>
+        </div>
+      </div>
+      <div *ngIf="activities.length > 0; else vacio">
+        <unicauca-pastel-grafico
+          [legendTitle]="tituloLegend"
+          [information]="data"
+        ></unicauca-pastel-grafico>
+      </div>
+      <ng-template #vacio>
+        <div style="text-align: center">
+          <h3>No hay actividades registradas</h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!--BOTÓN GENERAR REPORTE-->
+<div class="paddingx">
+  <mat-grid-list cols="1" rowHeight="80px">
+    <mat-grid-tile>
+      <button mat-raised-button color="primary" (click)="exportExcel()">
+        Generar reporte
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
