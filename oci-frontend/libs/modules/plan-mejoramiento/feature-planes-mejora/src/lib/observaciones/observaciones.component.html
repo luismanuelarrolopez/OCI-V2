@@ -29,7 +29,7 @@
                         <mat-form-field>
                             <mat-label>Estado</mat-label>
                             <mat-select formControlName="estado" id="Estado">
-                                <mat-option *ngFor="let estado of listadoEstado" [value]="estado.descripcion">
+                                <mat-option *ngFor="let estado of listadoEstadoObservacion" [value]="estado.descripcion">
                                     {{ estado.descripcion }}
                                 </mat-option>
                             </mat-select>

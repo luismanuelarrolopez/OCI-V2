@@ -206,15 +206,23 @@ export class HistorialComponent implements OnInit {
   }
 
   onEditarPlan(planSeleccionado) {
-    const planAEditar: plan[] = this.planes.filter(
-      (plan) => plan.idPlanMejoramiento === planSeleccionado.identificadorPlan
-    );
-    this.router.navigate([
-      this.router.url + '/agregar',
-      planAEditar[0].codeURL,
-    ]);
-    localStorage.setItem('visualizar', 'false');
-    this.estadosComunService.changeSelectedIndex(0);
+      if((planSeleccionado.estado === 'Ejecución' || planSeleccionado.estado === 'Finalizado') && this.esLiderProceso){
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No puedes editar porque el Plan de Mejoramiento está en estado ' + planSeleccionado.estado,
+        })
+      }else{
+        const planAEditar: plan[] = this.planes.filter(
+          (plan) => plan.idPlanMejoramiento === planSeleccionado.identificadorPlan
+        );
+        this.router.navigate([
+          this.router.url + '/agregar',
+          planAEditar[0].codeURL,
+        ]);
+        localStorage.setItem('visualizar', 'false');
+        this.estadosComunService.changeSelectedIndex(0);
+      }
   }
 
   onVisualizar(planSeleccionado) {
@@ -232,8 +240,6 @@ export class HistorialComponent implements OnInit {
   }
 
   onCrearHallazgo(planSeleccionado) {
-    if(this.esLiderProceso){
-      if(planSeleccionado.estado !== 'Formulación'){
         const planAAgregarHallazgo: plan[] = this.planes.filter(
           (plan) => plan.idPlanMejoramiento === planSeleccionado.identificadorPlan
         );
@@ -245,25 +251,6 @@ export class HistorialComponent implements OnInit {
         this.servicioPlan.setPlanAlmacenado(this.planes);
         this.servicioPlan.setIdPlan(planSeleccionado.identificadorPlan);
         //console.log(planSeleccionado.identificadorPlan)
-      }else{
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No puedes continuar porque el Plan de Mejoramiento está en Formulación',
-        })
-      }
-    }else{
-      const planAAgregarHallazgo: plan[] = this.planes.filter(
-        (plan) => plan.idPlanMejoramiento === planSeleccionado.identificadorPlan
-      );
-      this.estadosComunService.changePlan(planAAgregarHallazgo[0]);
-      this.estadosComunService.changeSelectedIndex(1);
-      // this.evPlan.emit(planAAgregarHallazgo[0]);
-      // this.evSelectedIndex.emit(1);
-      this.router.navigate(['/home/planes-mejora/historial/hallazgos']);
-      this.servicioPlan.setPlanAlmacenado(this.planes);
-      this.servicioPlan.setIdPlan(planSeleccionado.identificadorPlan);
-    }
   }
 
   //OBSERVACIONES

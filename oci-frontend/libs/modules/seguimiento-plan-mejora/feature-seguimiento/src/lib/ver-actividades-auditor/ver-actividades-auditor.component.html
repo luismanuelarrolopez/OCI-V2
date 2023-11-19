@@ -68,8 +68,16 @@
           <br />
           <!-- Tipo evidencia -->
           <div class="tipo-evidencia" fxLayout="row">
-            <h4 class="text-tipo-evidencia">TIPO DE EVIDENCIA A SUBIR: </h4> <br>
+            <h4 class="text-tipo-evidencia">TIPO DE EVIDENCIA A SUBIR:&nbsp;</h4> <br>
             <h4> {{actividad.tipoEvidencia}}</h4>
+          </div>
+          <div class="tipo-evidencia" fxLayout="row">
+            <h4 class="text-tipo-evidencia">TIPO DE UNIDAD:&nbsp;</h4> <br>
+            <h4> {{convertirTipoUnidadALetras(actividad.tipo_unidad)}}&nbsp;</h4>
+          </div>
+          <div class="tipo-evidencia" fxLayout="row">
+            <h4 class="text-tipo-evidencia"> VALOR DE UNIDAD:&nbsp;</h4> <br>
+            <h4> {{ actividad.valor_unidad }}</h4>
           </div>
           <p>
             <!--EVIDENCIAS-->

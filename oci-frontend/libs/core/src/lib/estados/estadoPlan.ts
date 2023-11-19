@@ -10,3 +10,7 @@ export const estadosPlan: estadoPlanModelo[] = [
   { id: 4, descripcion: 'Ejecución' },
   { id: 5, descripcion: 'Finalizado' },
 ];
+export const estadosObservacion: estadoPlanModelo[] = [
+  { id: 1, descripcion: 'No gestionada' },
+  { id: 2, descripcion: 'Gestionada' },
+];

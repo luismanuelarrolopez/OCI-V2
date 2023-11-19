@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '@unicauca/auth';
-import { estadosPlan, UserService } from '@unicauca/core';
+import {estadosObservacion, estadosPlan, UserService} from '@unicauca/core';
 import { HallazgoService } from '@unicauca/modules/hallazgos/data-access';
 import {
   PlanService,
@@ -32,6 +32,8 @@ export class ObservacionesComponent implements OnInit {
 
   modoEdicionActivo = false;
   public listadoEstado = estadosPlan;
+  public listadoEstadoObservacion = estadosObservacion;
+
 
   contador = 0;
   esLiderProceso = false;
@@ -121,6 +123,8 @@ export class ObservacionesComponent implements OnInit {
   }
 
   public onGuardar(): void {
+    this.formularioObservacion.value.estado = this.listadoEstadoObservacion[0].descripcion
+    console.log(this.formularioObservacion.value)
     if (this.formularioObservacion.invalid) {
       return;
     }

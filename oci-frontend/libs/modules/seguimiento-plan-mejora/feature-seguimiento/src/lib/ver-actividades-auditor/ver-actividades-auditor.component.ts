@@ -93,7 +93,6 @@ export class VerActividadesAuditorComponent implements OnInit {
         tap((objActividades) => {
           this.listaActividades = objActividades;
           this.actividadSeleccionada = this.listaActividades[0];
-
           this.actualizarSoporte();
         })
       )
@@ -153,5 +152,16 @@ export class VerActividadesAuditorComponent implements OnInit {
       data: info,
     });
     dialogRef.afterClosed().subscribe((x) => this.actualizarSoporte());
+  }
+
+  public convertirTipoUnidadALetras( unidad){
+    if(unidad === 'N'){
+      return 'NUMERO'
+    }
+    if(unidad === 'P'){
+      return 'PORCENTAJE'
+    }{
+      return 'Error al identificar el tipo unidad'
+    }
   }
 }

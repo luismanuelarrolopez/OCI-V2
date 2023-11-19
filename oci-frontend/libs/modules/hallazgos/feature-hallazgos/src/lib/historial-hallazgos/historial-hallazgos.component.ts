@@ -29,6 +29,8 @@ export class HistorialHallazgosComponent implements OnInit, OnChanges {
   activarFiltroItems = true;
   hallazgos: Hallazgo[] = [];
   planes: plan[];
+  esLiderProceso = false;
+
 
   unsubscribe$ = new Subject();
 
@@ -60,6 +62,7 @@ export class HistorialHallazgosComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.esAuditor = (this.authService.getUsuario().objRole[0] === 'ROLE_auditor');
+    this.esLiderProceso = (this.authService.getUsuario().objRole[0] === 'ROLE_liderDeProceso');
     this.hintAgregarOVerAuditor = (this.esAuditor ? 'Ver' : 'Agregar');
     this.llenarBotones();
     //this.listarHallazgos();
@@ -170,14 +173,22 @@ export class HistorialHallazgosComponent implements OnInit, OnChanges {
   }
 
   public onEditarPlan(hallazgo): void {
-    if (this.plan !== undefined) {
-      this.router.navigate([
-        this.router.url + '/gestionHallazgos',
-        this.plan.codeURL,
-        hallazgo.id,
-      ]);
-      localStorage.setItem('visualizar', 'false');
-      this.estadosComunService.changeSelectedIndex(1);
+    if((hallazgo.objPlan.estado === 'Ejecución' || hallazgo.objPlan.estado === 'Finalizado') && this.esLiderProceso){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No puedes editar porque el Plan de Mejoramiento está en estado '+ hallazgo.objPlan.estado,
+      })
+    }else {
+      if (this.plan !== undefined) {
+        this.router.navigate([
+          this.router.url + '/gestionHallazgos',
+          this.plan.codeURL,
+          hallazgo.id,
+        ]);
+        localStorage.setItem('visualizar', 'false');
+        this.estadosComunService.changeSelectedIndex(1);
+      }
     }
   }
 

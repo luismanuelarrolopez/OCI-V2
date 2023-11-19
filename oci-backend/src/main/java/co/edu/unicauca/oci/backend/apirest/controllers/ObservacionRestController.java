@@ -108,11 +108,10 @@ public class ObservacionRestController {
 	@PostMapping("/observaciones")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@Valid @RequestBody Observacion observacion, BindingResult result) {
-		
 
 		Map<String, Object> response = new HashMap<>();
 		Observacion objObservacion;
-		observacion.setEstado(EstadoPDM.FORMULACION.getNombre());
+		//observacion.setEstado(EstadoPDM.FORMULACION.getNombre());
 		observacion.setFecha_registro(new Date());
 
 		if (result.hasErrors()) {

@@ -27,6 +27,7 @@ export class HistorialActividadesComponent implements OnInit {
   titulo = '';
   activarFiltroItems = true;
   unsubscribe$ = new Subject();
+  esLiderProceso = false;
 
   accion: Accion;
   actividades: Actividad[] = [];
@@ -62,6 +63,7 @@ export class HistorialActividadesComponent implements OnInit {
 
   ngOnInit(): void {
     this.esAuditor = (this.authService.getUsuario().objRole[0] === 'ROLE_auditor');
+    this.esLiderProceso = (this.authService.getUsuario().objRole[0] === 'ROLE_liderDeProceso');
     this.llenarBotones();
     this.estadosComunService.customAccion
       .pipe(takeUntil(this.unsubscribe$))
@@ -164,13 +166,22 @@ export class HistorialActividadesComponent implements OnInit {
     });
   }
   public onEditarActividad($actividad): void {
-    if (this.accion !== null) {
-      this.router.navigate([
-        '/home/planes-mejora/historial/actividades/gestionActividades',
-        this.accion.idAccion, $actividad.id, this.esAuditor
-      ]);
-      localStorage.setItem('visualizar', 'false');
-      this.estadosComunService.changeSelectedIndex(4);
+    if((this.actividades[0].objAccion.objCausa.objHallazgo.objPlan.estado === 'Ejecución' ||
+        this.actividades[0].objAccion.objCausa.objHallazgo.objPlan.estado === 'Finalizado') && this.esLiderProceso){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No puedes editar porque el Plan de Mejoramiento está en estado '+ this.actividades[0].objAccion.objCausa.objHallazgo.objPlan.estado,
+      })
+    }else {
+      if (this.accion !== null) {
+        this.router.navigate([
+          '/home/planes-mejora/historial/actividades/gestionActividades',
+          this.accion.idAccion, $actividad.id, this.esAuditor
+        ]);
+        localStorage.setItem('visualizar', 'false');
+        this.estadosComunService.changeSelectedIndex(4);
+      }
     }
   }
   public onVisualizarActividad($actividad): void {
