@@ -1,0 +1,33 @@
+# fly.toml app configuration file generated for bd-proyecto-oci on 2023-11-20T06:42:18-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+
+app = "bd-proyecto-oci"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+# If copy/paste'ing, adjust this
+# to the region you're deploying to
+primary_region = "bog"
+
+[processes]
+app = """--datadir /data/mysql \
+  --default-authentication-plugin mysql_native_password \
+  --performance-schema=OFF \
+  --innodb-buffer-pool-size 64M"""
+
+[mounts]
+  source="mysqldata"
+  destination="/data"
+
+[env]
+  MYSQL_DATABASE = "bd_proyecto_oci"
+
+# As of 04/25/2023:
+# MySQL 8.0.33 has a bug in it
+# so avoid that specific version
+[build]
+  image = "mysql:8.0.32"
+

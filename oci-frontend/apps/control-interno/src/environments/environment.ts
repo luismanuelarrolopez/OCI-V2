@@ -3,10 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: true,
-   apiRoot: 'http://localhost:5000/api/',
-   authRoot: 'http://localhost:5000/oauth/',
+   //apiRoot: 'http://localhost:5000/api/',
+   //authRoot: 'http://localhost:5000/oauth/',
   //apiRoot: 'https://fiet.unicauca.edu.co/oci-api/api/',
   //authRoot: 'https://fiet.unicauca.edu.co/oci-api/oauth/',
+  apiRoot: 'https://oci-backend-winter-pine-4070.fly.dev/api/',
+  authRoot: 'https://oci-backend-winter-pine-4070.fly.dev/oauth/',
 };
 
 /*

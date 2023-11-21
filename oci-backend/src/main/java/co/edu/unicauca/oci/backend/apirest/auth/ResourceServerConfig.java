@@ -111,7 +111,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://fiet.unicauca.edu.co/oficina-control-interno", "https://rectoria.unicauca.edu.co/oficina-control-interno"));
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200","https://fiet.unicauca.edu.co/oficina-control-interno", "https://rectoria.unicauca.edu.co/oficina-control-interno"));
 		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		config.setAllowCredentials(true);
 		config.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization", "code-url"));

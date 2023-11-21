@@ -1,4 +1,5 @@
 FROM node:14-slim as build-stage
+RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json .
 RUN npm install --legacy-peer-deps
@@ -8,8 +9,8 @@ RUN ["npm", "run", "build-prod"]
 
 FROM nginx:latest
 RUN rm -rf /usr/share/nginx/html/*
-RUN mkdir /usr/share/nginx/html/OficinaControlInterno
+RUN mkdir /usr/share/nginx/html/oficina-control-interno
 COPY --from=build-stage /usr/src/app/dist/apps/control-interno/index.html /usr/share/nginx/html/index.html
-COPY --from=build-stage /usr/src/app/dist/apps/control-interno /usr/share/nginx/html/OficinaControlInterno/
+COPY --from=build-stage /usr/src/app/dist/apps/control-interno /usr/share/nginx/html/oficina-control-interno/
 EXPOSE 80
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

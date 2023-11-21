@@ -11,7 +11,7 @@ services:
     networks:
       - oci_network
     volumes: 
-      - MySQLDBData
+      - /MySQLDBData
   
   oci_backend:
     build:
